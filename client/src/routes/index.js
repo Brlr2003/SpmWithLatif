@@ -118,18 +118,15 @@ export default function Router() {
         { path: 'ecommerce', element: <GeneralEcommerce /> },
         { path: 'analytics', element: <GeneralAnalytics /> },
         { path: 'banking', element: <GeneralBanking /> },
-        { path: 'meeting', element: <MeetingOverview /> },
-        { path: 'meeting/new', element: <MeetingCreate /> },
+        // { path: 'meeting', element: <MeetingOverview /> },
+        // { path: 'meeting/new', element: <MeetingCreate /> },
         {
-          path: 'e-commerce',
+          path: 'meeting',
           children: [
-            { element: <Navigate to="/dashboard/e-commerce/shop" replace />, index: true },
-            { path: 'shop', element: <EcommerceShop /> },
-            { path: 'product/:name', element: <EcommerceProductDetails /> },
-            { path: 'list', element: <EcommerceProductList /> },
-            { path: 'product/new', element: <EcommerceProductCreate /> },
-            { path: 'product/:name/edit', element: <EcommerceProductCreate /> },
-            { path: 'checkout', element: <EcommerceCheckout /> },
+            { element: <Navigate to="/dashboard/meeting/list" replace />, index: true },
+            { path: 'list', element: <MeetingOverview /> },
+            { path: 'new', element: <MeetingCreate /> },
+            { path: ':name/edit', element: <MeetingCreate /> },
           ],
         },
         {
@@ -232,6 +229,8 @@ const PhoneAgentApp = Loadable(lazy(() => import('../pages/dashboard/PhoneAgentA
 const GeneralEcommerce = Loadable(lazy(() => import('../pages/dashboard/GeneralEcommerce')));
 const GeneralAnalytics = Loadable(lazy(() => import('../pages/dashboard/GeneralAnalytics')));
 const GeneralBanking = Loadable(lazy(() => import('../pages/dashboard/GeneralBanking')));
+
+// MEETING
 const MeetingOverview = Loadable(lazy(() => import('../pages/dashboard/Meeting')));
 const MeetingCreate = Loadable(lazy(() => import('../pages/dashboard/MeetingCreate')));
 

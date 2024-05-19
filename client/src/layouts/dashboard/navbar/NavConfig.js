@@ -35,7 +35,7 @@ const navConfig = [
       // { title: 'e-commerce', path: PATH_DASHBOARD.general.ecommerce, icon: ICONS.ecommerce },
       // { title: 'analytics', path: PATH_DASHBOARD.general.analytics, icon: ICONS.analytics },
       // { title: 'banking', path: PATH_DASHBOARD.general.banking, icon: ICONS.banking },
-      { title: 'meeting overview', path: PATH_DASHBOARD.general.meeting, icon: ICONS.booking },
+      { title: 'meeting overview', path: PATH_DASHBOARD.meeting.root, icon: ICONS.booking },
     ],
   },
 

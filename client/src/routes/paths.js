@@ -70,8 +70,11 @@ export const PATH_DASHBOARD = {
     edit: (name) => `/user/${name}/edit`,
     demoEdit: `/user/reece-chung/edit`,
   },
-  meeting:{
-    
+  meeting: {
+    root: '/meeting',
+    new: '/meeting/new',
+    list: '/meeting/list',
+    edit: (name) => `/meeting/${name}/edit`,
   },
   eCommerce: {
     root: '/e-commerce',
