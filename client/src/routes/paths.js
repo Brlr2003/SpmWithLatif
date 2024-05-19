@@ -71,7 +71,7 @@ export const PATH_DASHBOARD = {
     demoEdit: `/user/reece-chung/edit`,
   },
   meeting: {
-    root: '/meeting',
+    // root: '/meeting',
     new: '/meeting/new',
     list: '/meeting/list',
     edit: (name) => `/meeting/${name}/edit`,

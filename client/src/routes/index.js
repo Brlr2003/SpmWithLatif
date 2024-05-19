@@ -123,7 +123,7 @@ export default function Router() {
         {
           path: 'meeting',
           children: [
-            { element: <Navigate to="/dashboard/meeting/list" replace />, index: true },
+            { element: <Navigate to="/meeting/list" replace />, index: true },
             { path: 'list', element: <MeetingOverview /> },
             { path: 'new', element: <MeetingCreate /> },
             { path: ':name/edit', element: <MeetingCreate /> },
