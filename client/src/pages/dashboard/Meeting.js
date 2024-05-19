@@ -26,7 +26,7 @@ import useTabs from '../../hooks/useTabs';
 import useSettings from '../../hooks/useSettings';
 import useTable, { getComparator, emptyRows } from '../../hooks/useTable';
 // _mock_
-import { _userList } from '../../_mock';
+import { _meetingList } from '../../_mock';
 // components
 import Page from '../../components/Page';
 import Iconify from '../../components/Iconify';
@@ -89,7 +89,7 @@ export default function MeetingOverview() {
 
   const navigate = useNavigate();
 
-  const [tableData, setTableData] = useState(_userList);
+  const [tableData, setTableData] = useState(_meetingList);
 
   const [filterName, setFilterName] = useState('');
 

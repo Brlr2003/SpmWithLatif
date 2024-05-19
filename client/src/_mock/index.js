@@ -13,6 +13,7 @@ export * from './_ecommerce';
 export * from './_analytics';
 export * from './_countries';
 export * from './_top100Films';
+export * from './_meeting';
 export * from './_meetingStatus';
 
 export default _mock;
