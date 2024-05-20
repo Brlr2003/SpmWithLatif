@@ -24,9 +24,10 @@ import InvoiceNewEditStatusDate from './InvoiceNewEditStatusDate';
 InvoiceNewEditForm.propTypes = {
   isEdit: PropTypes.bool,
   currentInvoice: PropTypes.object,
+  currentUser: PropTypes.object,
 };
 
-export default function InvoiceNewEditForm({ isEdit, currentInvoice }) {
+export default function InvoiceNewEditForm({ isEdit, currentInvoice, currentUser }) {
   const navigate = useNavigate();
 
   const [loadingSave, setLoadingSave] = useState(false);
@@ -117,7 +118,7 @@ export default function InvoiceNewEditForm({ isEdit, currentInvoice }) {
   return (
     <FormProvider methods={methods}>
       <Card>
-        <InvoiceNewEditAddress />
+        <InvoiceNewEditAddress currentUser={currentUser} />
         <InvoiceNewEditStatusDate />
         <InvoiceNewEditDetails />
       </Card>

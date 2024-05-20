@@ -15,7 +15,11 @@ import InvoiceAddressListDialog from './InvoiceAddressListDialog';
 
 // ----------------------------------------------------------------------
 
-export default function InvoiceNewEditAddress() {
+InvoiceNewEditAddress.propTypes = {
+  currentUser: PropTypes.object,
+};
+
+export default function InvoiceNewEditAddress({ currentUser }) {
   const {
     watch,
     setValue,
@@ -39,26 +43,27 @@ export default function InvoiceNewEditAddress() {
       divider={<Divider flexItem orientation={upMd ? 'vertical' : 'horizontal'} sx={{ borderStyle: 'dashed' }} />}
       sx={{ p: 3 }}
     >
+      {console.log(values)}
       <Stack sx={{ width: 1 }}>
         <Stack direction="row" alignItems="center" justifyContent="space-between" sx={{ mb: 1 }}>
           <Typography variant="h6" sx={{ color: 'text.disabled' }}>
             From:
           </Typography>
 
-          <Button size="small" startIcon={<Iconify icon="eva:edit-fill" />} onClick={onOpenFrom}>
+          {/* <Button size="small" startIcon={<Iconify icon="eva:edit-fill" />} onClick={onOpenFrom}>
             Change
-          </Button>
+          </Button> */}
 
-          <InvoiceAddressListDialog
+          {/* <InvoiceAddressListDialog
             open={openFrom}
             onClose={onCloseFrom}
             selected={(selectedId) => invoiceFrom?.id === selectedId}
             onSelect={(address) => setValue('invoiceFrom', address)}
             addressOptions={_invoiceAddressFrom}
-          />
+          /> */}
         </Stack>
 
-        <AddressInfo name={invoiceFrom.name} address={invoiceFrom.address} phone={invoiceFrom.phone} />
+        <AddressInfo name={'Pure Tech'} address={'Epoka University, Tirana, Albania, 1001'} phone={'+355 69 293 75'} />
       </Stack>
 
       <Stack sx={{ width: 1 }}>
@@ -67,30 +72,30 @@ export default function InvoiceNewEditAddress() {
             To:
           </Typography>
 
-          <Button
+          {/* <Button
             size="small"
             startIcon={<Iconify icon={invoiceTo ? 'eva:edit-fill' : 'eva:plus-fill'} />}
             onClick={onOpenTo}
           >
             {invoiceTo ? 'Change' : 'Add'}
-          </Button>
+          </Button> */}
 
-          <InvoiceAddressListDialog
-            open={openTo}
-            onClose={onCloseTo}
-            selected={(selectedId) => invoiceTo?.id === selectedId}
+          {/* <InvoiceAddressListDialog
+            // open={openTo}
+            // onClose={onCloseTo}
+            selected={(selectedId) => currentUser?.id === selectedId}
             onSelect={(address) => setValue('invoiceTo', address)}
             addressOptions={_invoiceAddressTo}
-          />
+          /> */}
         </Stack>
+        <AddressInfo name={currentUser.name} address={currentUser.address} phone={currentUser.phoneNumber} />
 
-        {invoiceTo ? (
-          <AddressInfo name={invoiceTo.name} address={invoiceTo.address} phone={invoiceTo.phone} />
+        {/* {invoiceTo ? (
         ) : (
           <Typography typography="caption" sx={{ color: 'error.main' }}>
             {errors.invoiceTo ? errors.invoiceTo.message : null}
           </Typography>
-        )}
+        )} */}
       </Stack>
     </Stack>
   );

@@ -125,7 +125,7 @@ export default function MeetingNewEditForm({ isEdit, currentMeeting }) {
 
   const renderContent = () => {
     if (values.status === 'Successful') {
-      return invoice ? <Invoice invoice={invoice} /> : <InvoiceNewEditForm />;
+      return invoice ? <Invoice invoice={invoice} /> : <InvoiceNewEditForm currentUser={currentMeeting} />;
     }
   };
 
