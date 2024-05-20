@@ -62,7 +62,6 @@ export default function MeetingCreate() {
             ]}
           />
         )}
-        {console.log(currentMeeting)}
         <MeetingNewEditForm isEdit={isEdit} currentMeeting={currentMeeting} />
         {/* {currentMeeting.status === 'Succesful' && <Invoice invoice={invoice} />} */}
       </Container>

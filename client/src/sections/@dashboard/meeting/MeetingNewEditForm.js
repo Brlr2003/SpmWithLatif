@@ -125,13 +125,14 @@ export default function MeetingNewEditForm({ isEdit, currentMeeting }) {
 
   const renderContent = () => {
     if (values.status === 'Successful') {
-      return invoice ? <Invoice invoice={invoice} /> : <InvoiceNewEditForm currentUser={currentMeeting} />;
+      return <InvoiceNewEditForm currentUser={currentMeeting} />;
     }
   };
 
   return (
     <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
-      <Grid container spacing={3}>
+      {console.log(invoice)}
+      <Grid container spacing={3} sx={{ mb: 10 }}>
         <Grid item xs={12} md={4}>
           <Card sx={{ py: 10, px: 3 }}>
             {isEdit && (
@@ -236,7 +237,6 @@ export default function MeetingNewEditForm({ isEdit, currentMeeting }) {
           </Card>
         </Grid>
       </Grid>
-      {console.log(values.status)}
       {renderContent()}
     </FormProvider>
   );

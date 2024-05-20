@@ -7,7 +7,8 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 // @mui
 import { LoadingButton } from '@mui/lab';
-import { Card, Stack } from '@mui/material';
+import { Card, CircularProgress, Icon, IconButton, Stack, Tooltip } from '@mui/material';
+import { PDFDownloadLink } from '@react-pdf/renderer';
 // routes
 import { PATH_DASHBOARD } from '../../../../routes/paths';
 // mock
@@ -15,10 +16,12 @@ import { _invoiceAddressFrom } from '../../../../_mock';
 // components
 import { FormProvider } from '../../../../components/hook-form';
 //
+import InvoiceToolbar from '../details/InvoiceToolbar';
 import InvoiceNewEditDetails from './InvoiceNewEditDetails';
 import InvoiceNewEditAddress from './InvoiceNewEditAddress';
 import InvoiceNewEditStatusDate from './InvoiceNewEditStatusDate';
-
+import InvoicePDF from '../details/InvoicePDF';
+import Iconify from '../../../../components/Iconify';
 // ----------------------------------------------------------------------
 
 InvoiceNewEditForm.propTypes = {
@@ -124,24 +127,27 @@ export default function InvoiceNewEditForm({ isEdit, currentInvoice, currentUser
       </Card>
 
       <Stack justifyContent="flex-end" direction="row" spacing={2} sx={{ mt: 3 }}>
-        <LoadingButton
-          color="inherit"
-          size="large"
-          variant="contained"
-          loading={loadingSave && isSubmitting}
-          onClick={handleSubmit(handleSaveAsDraft)}
+        {/* <LoadingButton
+                size="large"
+                variant="contained"
+                loading={loadingSend && isSubmitting}
+                onClick={handleSubmit(handleCreateAndSend)}
+              >
+                {isEdit ? 'Update' : 'Create'} & Send
+              </LoadingButton> */}
+        {/* <PDFDownloadLink
+          document={<InvoicePDF invoice={values} />}
+          fileName={currentUser.id}
+          style={{ textDecoration: 'none' }}
         >
-          Save as Draft
-        </LoadingButton>
-
-        <LoadingButton
-          size="large"
-          variant="contained"
-          loading={loadingSend && isSubmitting}
-          onClick={handleSubmit(handleCreateAndSend)}
-        >
-          {isEdit ? 'Update' : 'Create'} & Send
-        </LoadingButton>
+          {({ loading }) => (
+            <Tooltip title="Download">
+              <IconButton>
+                {loading ? <CircularProgress size={24} color="inherit" /> : <Iconify icon={'eva:download-fill'} />}
+              </IconButton>
+            </Tooltip>
+          )}
+        </PDFDownloadLink> */}
       </Stack>
     </FormProvider>
   );

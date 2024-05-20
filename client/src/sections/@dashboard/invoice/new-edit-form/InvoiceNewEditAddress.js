@@ -30,12 +30,6 @@ export default function InvoiceNewEditAddress({ currentUser }) {
 
   const values = watch();
 
-  const { toggle: openFrom, onOpen: onOpenFrom, onClose: onCloseFrom } = useToggle();
-
-  const { toggle: openTo, onOpen: onOpenTo, onClose: onCloseTo } = useToggle();
-
-  const { invoiceFrom, invoiceTo } = values;
-
   return (
     <Stack
       spacing={{ xs: 2, md: 5 }}
@@ -49,18 +43,6 @@ export default function InvoiceNewEditAddress({ currentUser }) {
           <Typography variant="h6" sx={{ color: 'text.disabled' }}>
             From:
           </Typography>
-
-          {/* <Button size="small" startIcon={<Iconify icon="eva:edit-fill" />} onClick={onOpenFrom}>
-            Change
-          </Button> */}
-
-          {/* <InvoiceAddressListDialog
-            open={openFrom}
-            onClose={onCloseFrom}
-            selected={(selectedId) => invoiceFrom?.id === selectedId}
-            onSelect={(address) => setValue('invoiceFrom', address)}
-            addressOptions={_invoiceAddressFrom}
-          /> */}
         </Stack>
 
         <AddressInfo name={'Pure Tech'} address={'Epoka University, Tirana, Albania, 1001'} phone={'+355 69 293 75'} />
@@ -71,31 +53,8 @@ export default function InvoiceNewEditAddress({ currentUser }) {
           <Typography variant="h6" sx={{ color: 'text.disabled' }}>
             To:
           </Typography>
-
-          {/* <Button
-            size="small"
-            startIcon={<Iconify icon={invoiceTo ? 'eva:edit-fill' : 'eva:plus-fill'} />}
-            onClick={onOpenTo}
-          >
-            {invoiceTo ? 'Change' : 'Add'}
-          </Button> */}
-
-          {/* <InvoiceAddressListDialog
-            // open={openTo}
-            // onClose={onCloseTo}
-            selected={(selectedId) => currentUser?.id === selectedId}
-            onSelect={(address) => setValue('invoiceTo', address)}
-            addressOptions={_invoiceAddressTo}
-          /> */}
         </Stack>
         <AddressInfo name={currentUser.name} address={currentUser.address} phone={currentUser.phoneNumber} />
-
-        {/* {invoiceTo ? (
-        ) : (
-          <Typography typography="caption" sx={{ color: 'error.main' }}>
-            {errors.invoiceTo ? errors.invoiceTo.message : null}
-          </Typography>
-        )} */}
       </Stack>
     </Stack>
   );
