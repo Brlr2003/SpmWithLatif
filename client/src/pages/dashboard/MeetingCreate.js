@@ -9,13 +9,13 @@ import { PATH_DASHBOARD } from '../../routes/paths';
 // hooks
 import useSettings from '../../hooks/useSettings';
 // _mock_
-// import { _userList } from '../../_mock';
-import { _meetingList } from '../../_mock';
+import { _meetingList, _invoices } from '../../_mock';
 // components
 import Page from '../../components/Page';
 import HeaderBreadcrumbs from '../../components/HeaderBreadcrumbs';
 // sections
 import MeetingNewEditForm from '../../sections/@dashboard/meeting/MeetingNewEditForm';
+import Invoice from '../../sections/@dashboard/invoice/details';
 
 // ----------------------------------------------------------------------
 
@@ -62,8 +62,9 @@ export default function MeetingCreate() {
             ]}
           />
         )}
-
+        {console.log(currentMeeting)}
         <MeetingNewEditForm isEdit={isEdit} currentMeeting={currentMeeting} />
+        {/* {currentMeeting.status === 'Succesful' && <Invoice invoice={invoice} />} */}
       </Container>
     </Page>
   );

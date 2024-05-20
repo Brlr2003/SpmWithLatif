@@ -10,16 +10,18 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { LoadingButton } from '@mui/lab';
 import { Box, Card, Grid, Stack, Switch, Typography, FormControlLabel, Button } from '@mui/material';
 // icons
-import Iconify from '../../../components/Iconify';
 // utils
 import { fData } from '../../../utils/formatNumber';
 // routes
 import { PATH_DASHBOARD } from '../../../routes/paths';
 // _mock
-import { countries, meetingStatus } from '../../../_mock';
+import { countries, meetingStatus, _invoices } from '../../../_mock';
 // components
 import Label from '../../../components/Label';
 import { FormProvider, RHFSelect, RHFSwitch, RHFTextField, RHFUploadAvatar } from '../../../components/hook-form';
+// sections
+import Invoice from '../invoice/details';
+import InvoiceNewEditForm from '../invoice/new-edit-form';
 
 // ----------------------------------------------------------------------
 
@@ -30,6 +32,8 @@ MeetingNewEditForm.propTypes = {
 
 export default function MeetingNewEditForm({ isEdit, currentMeeting }) {
   const navigate = useNavigate();
+
+  const invoice = _invoices.find((invoice) => invoice.id === currentMeeting.id);
 
   const { enqueueSnackbar } = useSnackbar();
 
@@ -118,6 +122,12 @@ export default function MeetingNewEditForm({ isEdit, currentMeeting }) {
     },
     [setValue]
   );
+
+  const renderContent = () => {
+    if (values.status === 'Successful') {
+      return invoice ? <Invoice invoice={invoice} /> : <InvoiceNewEditForm />;
+    }
+  };
 
   return (
     <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
@@ -226,6 +236,8 @@ export default function MeetingNewEditForm({ isEdit, currentMeeting }) {
           </Card>
         </Grid>
       </Grid>
+      {console.log(values.status)}
+      {renderContent()}
     </FormProvider>
   );
 }
