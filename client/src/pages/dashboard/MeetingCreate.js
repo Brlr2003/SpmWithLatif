@@ -7,7 +7,8 @@ import { PATH_DASHBOARD } from '../../routes/paths';
 // hooks
 import useSettings from '../../hooks/useSettings';
 // _mock_
-import { _userList } from '../../_mock';
+// import { _userList } from '../../_mock';
+import { _meetingList } from '../../_mock';
 // components
 import Page from '../../components/Page';
 import HeaderBreadcrumbs from '../../components/HeaderBreadcrumbs';
@@ -25,7 +26,7 @@ export default function MeetingCreate() {
 
   const isEdit = pathname.includes('edit');
 
-  const currentUser = _userList.find((user) => paramCase(user.name) === name);
+  const currentMeeting = _meetingList.find((user) => paramCase(user.name) === name);
 
   return (
     <Page title="Create a new meeting">
@@ -39,7 +40,7 @@ export default function MeetingCreate() {
           ]}
         />
 
-        <MeetingNewEditForm isEdit={isEdit} currentUser={currentUser} />
+        <MeetingNewEditForm isEdit={isEdit} currentMeeting={currentMeeting} />
       </Container>
     </Page>
   );

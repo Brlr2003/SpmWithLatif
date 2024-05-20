@@ -1,2 +1,2 @@
-export { default as UserTableRow } from './UserTableRow';
-export { default as UserTableToolbar } from './UserTableToolbar';
+export { default as MeetingTableRow } from './MeetingTableRow';
+export { default as MeetingTableToolbar } from './MeetingTableToolbar';

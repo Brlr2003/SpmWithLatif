@@ -34,7 +34,8 @@ import Scrollbar from '../../components/Scrollbar';
 import HeaderBreadcrumbs from '../../components/HeaderBreadcrumbs';
 import { TableEmptyRows, TableHeadCustom, TableNoData, TableSelectedActions } from '../../components/table';
 // sections
-import { UserTableToolbar, UserTableRow } from '../../sections/@dashboard/user/list';
+// import { UserTableToolbar, UserTableRow } from '../../sections/@dashboard/user/list';
+import { MeetingTableToolbar, MeetingTableRow } from '../../sections/@dashboard/meeting/list';
 
 // ----------------------------------------------------------------------
 
@@ -119,7 +120,7 @@ export default function MeetingOverview() {
   };
 
   const handleEditRow = (id) => {
-    navigate(PATH_DASHBOARD.user.edit(paramCase(id)));
+    navigate(PATH_DASHBOARD.meeting.edit(paramCase(id)));
   };
 
   const dataFiltered = applySortFilter({
@@ -175,7 +176,7 @@ export default function MeetingOverview() {
 
           <Divider />
 
-          <UserTableToolbar
+          <MeetingTableToolbar
             filterName={filterName}
             filterRole={filterRole}
             onFilterName={handleFilterName}
@@ -224,7 +225,7 @@ export default function MeetingOverview() {
 
                 <TableBody>
                   {dataFiltered.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => (
-                    <UserTableRow
+                    <MeetingTableRow
                       key={row.id}
                       row={row}
                       selected={selected.includes(row.id)}
