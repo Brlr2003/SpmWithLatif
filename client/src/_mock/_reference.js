@@ -3,7 +3,7 @@ import { randomNumberRange, randomInArray } from './funcs';
 
 // ----------------------------------------------------------------------
 
-export const _meetingAbout = {
+export const _referenceAbout = {
   id: _mock.id(1),
   cover: _mock.image.cover(1),
   position: 'UI Designer',
@@ -21,7 +21,7 @@ export const _meetingAbout = {
   twitterLink: `https://www.twitter.com/caitlyn.kerluke`,
 };
 
-export const _meetingFollowers = [...Array(18)].map((_, index) => ({
+export const _referenceFollowers = [...Array(18)].map((_, index) => ({
   id: _mock.id(index),
   avatarUrl: _mock.image.avatar(index),
   name: _mock.name.fullName(index),
@@ -29,21 +29,21 @@ export const _meetingFollowers = [...Array(18)].map((_, index) => ({
   isFollowed: _mock.boolean(index),
 }));
 
-export const _meetingFriends = [...Array(18)].map((_, index) => ({
+export const _referenceFriends = [...Array(18)].map((_, index) => ({
   id: _mock.id(index),
   avatarUrl: _mock.image.avatar(index),
   name: _mock.name.fullName(index),
   role: _mock.role(index),
 }));
 
-export const _meetingGallery = [...Array(12)].map((_, index) => ({
+export const _referenceGallery = [...Array(12)].map((_, index) => ({
   id: _mock.id(index),
   title: _mock.text.title(index),
   postAt: _mock.time(index),
   imageUrl: _mock.image.cover(index),
 }));
 
-export const _meetingFeeds = [...Array(3)].map((_, index) => ({
+export const _referenceFeeds = [...Array(3)].map((_, index) => ({
   id: _mock.id(index),
   author: {
     id: _mock.id(8),
@@ -83,7 +83,7 @@ export const _meetingFeeds = [...Array(3)].map((_, index) => ({
   ],
 }));
 
-export const _meetingCards = [...Array(24)].map((_, index) => ({
+export const _referenceCards = [...Array(24)].map((_, index) => ({
   id: _mock.id(index),
   avatarUrl: _mock.image.avatar(index),
   cover: _mock.image.cover(index),
@@ -94,13 +94,13 @@ export const _meetingCards = [...Array(24)].map((_, index) => ({
   position: _mock.role(index),
 }));
 
-export const _meetingPayment = [...Array(2)].map((_, index) => ({
+export const _referencePayment = [...Array(2)].map((_, index) => ({
   id: _mock.id(index),
   cardNumber: ['**** **** **** 1234', '**** **** **** 5678', '**** **** **** 7878'][index],
   cardType: ['master_card', 'visa', 'master_card'][index],
 }));
 
-export const _meetingAddressBook = [...Array(4)].map((_, index) => ({
+export const _referenceAddressBook = [...Array(4)].map((_, index) => ({
   id: _mock.id(index),
   name: _mock.name.fullName(index),
   phone: _mock.phoneNumber(index),
@@ -111,26 +111,19 @@ export const _meetingAddressBook = [...Array(4)].map((_, index) => ({
   zipCode: '85807',
 }));
 
-export const _meetingInvoices = [...Array(10)].map((_, index) => ({
+export const _referenceInvoices = [...Array(10)].map((_, index) => ({
   id: _mock.id(index),
   createdAt: _mock.time(index),
   price: _mock.number.price(index),
 }));
 
-export const _meetingList = [...Array(24)].map((_, index) => ({
+export const _referenceList = [...Array(5)].map((_, index) => ({
   id: _mock.id(index),
-  avatarUrl: _mock.image.avatar(index),
   name: _mock.name.fullName(index),
-  email: _mock.email(index),
+  referencedBy: _mock.name.fullName(index + 4),
   phoneNumber: _mock.phoneNumber(index),
-  time: '12:30',
   address: '908 Jack Locks',
-  status: randomInArray(['Successful', 'Unsuccessful', 'Agent Cancellation', 'Customer Cancellation']),
-  country: _mock.address.country(index),
-  state: 'Virginia',
   city: 'Rancho Cordova',
-  zipCode: '85807',
-  company: _mock.company(index),
-  isVerified: _mock.boolean(index),
   role: _mock.role(index),
+  status: randomInArray(['Qualified', 'Unqualified']),
 }));

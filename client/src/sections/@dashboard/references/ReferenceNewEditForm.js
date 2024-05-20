@@ -8,37 +8,41 @@ import { useForm, Controller } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 // @mui
 import { LoadingButton } from '@mui/lab';
-import { Box, Card, Grid, Stack, Switch, Typography, FormControlLabel } from '@mui/material';
+import { Box, Card, Grid, Stack, Switch, Typography, FormControlLabel, Divider } from '@mui/material';
 // utils
 import { fData } from '../../../utils/formatNumber';
 // routes
 import { PATH_DASHBOARD } from '../../../routes/paths';
 // _mock
-import { countries, meetingStatus } from '../../../_mock';
+import { countries } from '../../../_mock';
 // components
 import Label from '../../../components/Label';
-import { FormProvider, RHFSelect, RHFSwitch, RHFTextField, RHFUploadAvatar } from '../../../components/hook-form';
+import {
+  FormProvider,
+  RHFSelect,
+  RHFSwitch,
+  RHFTextField,
+  RHFUploadAvatar,
+  RHFTextFieldMulti,
+} from '../../../components/hook-form';
 
 // ----------------------------------------------------------------------
 
-MeetingNewEditForm.propTypes = {
+ReferenceNewEditForm.propTypes = {
   isEdit: PropTypes.bool,
-  currentMeeting: PropTypes.object,
+  currentReference: PropTypes.object,
 };
 
-export default function MeetingNewEditForm({ isEdit, currentMeeting }) {
+export default function ReferenceNewEditForm({ isEdit, currentReference }) {
   const navigate = useNavigate();
 
   const { enqueueSnackbar } = useSnackbar();
 
-  const NewMeetingSchema = Yup.object().shape({
+  const NewReferenceSchema = Yup.object().shape({
     name: Yup.string().required('Name is required'),
-    email: Yup.string().required('Email is required').email(),
+    referencedBy: Yup.string().required('Reference is required'),
     phoneNumber: Yup.string().required('Phone number is required'),
     address: Yup.string().required('Address is required'),
-    country: Yup.string().required('Country is required'),
-    company: Yup.string().required('Company is required'),
-    state: Yup.string().required('State is required'),
     city: Yup.string().required('City is required'),
     role: Yup.string().required('Role Number is required'),
     status: Yup.string().required('Status is required'),
@@ -46,28 +50,24 @@ export default function MeetingNewEditForm({ isEdit, currentMeeting }) {
 
   const defaultValues = useMemo(
     () => ({
-      name: currentMeeting?.name || '',
-      email: currentMeeting?.email || '',
-      phoneNumber: currentMeeting?.phoneNumber || '',
-      address: currentMeeting?.address || '',
-      country: currentMeeting?.country || '',
-      state: currentMeeting?.state || '',
-      city: currentMeeting?.city || '',
-      zipCode: currentMeeting?.zipCode || '',
-      avatarUrl: currentMeeting?.avatarUrl || '',
-      isVerified: currentMeeting?.isVerified || true,
-      status: currentMeeting?.status || '',
-      company: currentMeeting?.company || '',
-      role: currentMeeting?.role || '',
+      name: currentReference?.name || '',
+      referencedBy: currentReference?.referencedBy || '',
+      phoneNumber: currentReference?.phoneNumber || '',
+      address: currentReference?.address || '',
+      city: currentReference?.city || '',
+      status: currentReference?.status,
+      role: currentReference?.role || '',
     }),
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [currentMeeting]
+    [currentReference]
   );
 
   const methods = useForm({
-    resolver: yupResolver(NewMeetingSchema),
+    resolver: yupResolver(NewReferenceSchema),
     defaultValues,
   });
+
+  const referenceStatus = ['Qualitified', 'Unqualified'];
 
   const {
     reset,
@@ -81,21 +81,21 @@ export default function MeetingNewEditForm({ isEdit, currentMeeting }) {
   const values = watch();
 
   useEffect(() => {
-    if (isEdit && currentMeeting) {
+    if (isEdit && currentReference) {
       reset(defaultValues);
     }
     if (!isEdit) {
       reset(defaultValues);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isEdit, currentMeeting]);
+  }, [isEdit, currentReference]);
 
   const onSubmit = async () => {
     try {
       await new Promise((resolve) => setTimeout(resolve, 500));
       reset();
       enqueueSnackbar(!isEdit ? 'Create success!' : 'Update success!');
-      navigate(PATH_DASHBOARD.meeting.list);
+      navigate(PATH_DASHBOARD.references.list);
     } catch (error) {
       console.error(error);
     }
@@ -119,18 +119,12 @@ export default function MeetingNewEditForm({ isEdit, currentMeeting }) {
 
   return (
     <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
-      {console.log(currentMeeting)}
       <Grid container spacing={3}>
-        <Grid item xs={12} md={4}>
+        {/* <Grid item xs={12} md={4}>
           <Card sx={{ py: 10, px: 3 }}>
             {isEdit && (
               <Label
-                color={
-                  (values.status === 'Unsuccessful' && 'error') ||
-                  (values.status === 'Successful' && 'success') ||
-                  (values.status === 'Agent Cancellation' && 'info') ||
-                  (values.status === 'Customer Cancellation' && 'warning')
-                }
+                color={values.status !== 'active' ? 'error' : 'success'}
                 sx={{ textTransform: 'uppercase', position: 'absolute', top: 24, right: 24 }}
               >
                 {values.status}
@@ -161,7 +155,7 @@ export default function MeetingNewEditForm({ isEdit, currentMeeting }) {
               />
             </Box>
 
-            {/* {isEdit && (
+            {isEdit && (
               <FormControlLabel
                 labelPlacement="start"
                 control={
@@ -189,7 +183,7 @@ export default function MeetingNewEditForm({ isEdit, currentMeeting }) {
                 }
                 sx={{ mx: 0, mb: 3, width: 1, justifyContent: 'space-between' }}
               />
-            )} */}
+            )}
 
             <RHFSwitch
               name="isVerified"
@@ -207,9 +201,9 @@ export default function MeetingNewEditForm({ isEdit, currentMeeting }) {
               sx={{ mx: 0, width: 1, justifyContent: 'space-between' }}
             />
           </Card>
-        </Grid>
+        </Grid> */}
 
-        <Grid item xs={12} md={8}>
+        <Grid item xs={12} md={12}>
           <Card sx={{ p: 3 }}>
             <Box
               sx={{
@@ -220,36 +214,24 @@ export default function MeetingNewEditForm({ isEdit, currentMeeting }) {
               }}
             >
               <RHFTextField name="name" label="Full Name" />
-              <RHFTextField name="email" label="Email Address" />
               <RHFTextField name="phoneNumber" label="Phone Number" />
-
-              <RHFSelect name="country" label="Country" placeholder="Country">
-                <option value="" />
-                {countries.map((option) => (
-                  <option key={option.code} value={option.label}>
-                    {option.label}
-                  </option>
-                ))}
-              </RHFSelect>
-
-              <RHFTextField name="city" label="City" />
               <RHFTextField name="address" label="Address" />
-              <RHFTextField name="zipCode" label="Zip/Code" />
-              <RHFTextField name="company" label="Company" />
-              <RHFTextField name="role" label="Role" />
-              <RHFSelect name="status" label="Status" placeholder="Select Status">
+              <RHFTextField name="city" label="City" />
+              <RHFTextField name="role" label="Profession" />
+              <RHFSelect name="status" label="Status" placeholder="Status">
                 <option value="" />
-                {meetingStatus.map((status, index) => (
-                  <option key={index} value={status}>
-                    {status}
+                {referenceStatus.map((option, index) => (
+                  <option key={index} value={option}>
+                    {option}
                   </option>
                 ))}
               </RHFSelect>
             </Box>
+            <RHFTextFieldMulti sx={{ mt: 3 }} name="comment" label="Comment" />
 
             <Stack alignItems="flex-end" sx={{ mt: 3 }}>
               <LoadingButton type="submit" variant="contained" loading={isSubmitting}>
-                {!isEdit ? 'Create Meeting' : 'Save Changes'}
+                {!isEdit ? 'Create Reference' : 'Save Changes'}
               </LoadingButton>
             </Stack>
           </Card>

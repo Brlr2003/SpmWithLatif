@@ -76,6 +76,10 @@ export const PATH_DASHBOARD = {
     list: '/meeting/list',
     edit: (name) => `/meeting/${name}/edit`,
   },
+  references: {
+    new: '/reference/new',
+    list: '/reference/list',
+  },
   eCommerce: {
     root: '/e-commerce',
     shop: '/e-commerce/shop',

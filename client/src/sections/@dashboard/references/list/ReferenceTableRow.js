@@ -10,7 +10,7 @@ import { TableMoreMenu } from '../../../../components/table';
 
 // ----------------------------------------------------------------------
 
-MeetingTableRow.propTypes = {
+ReferenceTableRow.propTypes = {
   row: PropTypes.object,
   selected: PropTypes.bool,
   onEditRow: PropTypes.func,
@@ -18,10 +18,10 @@ MeetingTableRow.propTypes = {
   onDeleteRow: PropTypes.func,
 };
 
-export default function MeetingTableRow({ row, selected, onEditRow, onSelectRow, onDeleteRow }) {
+export default function ReferenceTableRow({ row, selected, onEditRow, onSelectRow, onDeleteRow }) {
   const theme = useTheme();
 
-  const { name, avatarUrl, phoneNumber, time, address, status } = row;
+  const { name, referencedBy, phoneNumber, address, city, role, status } = row;
   // const { name, avatarUrl, company, role, isVerified, status } = row;
 
   const [openMenu, setOpenMenuActions] = useState(null);
@@ -40,21 +40,29 @@ export default function MeetingTableRow({ row, selected, onEditRow, onSelectRow,
         <Checkbox checked={selected} onClick={onSelectRow} />
       </TableCell>
 
-      <TableCell sx={{ display: 'flex', alignItems: 'center' }}>
-        <Avatar alt={name} src={avatarUrl} sx={{ mr: 2 }} />
+      <TableCell align="left">
         <Typography variant="subtitle2" noWrap>
           {name}
+        </Typography>
+      </TableCell>
+      <TableCell align="left">
+        <Typography variant="subtitle2" noWrap>
+          {referencedBy}
         </Typography>
       </TableCell>
 
       <TableCell align="left">{phoneNumber}</TableCell>
 
       <TableCell align="left" sx={{ textTransform: 'capitalize' }}>
-        {time}
+        {address}
       </TableCell>
 
       <TableCell align="left" sx={{ textTransform: 'capitalize' }}>
-        {address}
+        {city}
+      </TableCell>
+
+      <TableCell align="left" sx={{ textTransform: 'capitalize' }}>
+        {role}
       </TableCell>
 
       {/* <TableCell align="center">
@@ -74,12 +82,7 @@ export default function MeetingTableRow({ row, selected, onEditRow, onSelectRow,
       <TableCell align="left">
         <Label
           variant={theme.palette.mode === 'light' ? 'ghost' : 'filled'}
-          color={
-            (status === 'Unsuccessful' && 'error') ||
-            (status === 'Successful' && 'success') ||
-            (status === 'Agent Cancellation' && 'info') ||
-            (status === 'Customer Cancellation' && 'warning')
-          }
+          color={(status === 'Unqualified' && 'error') || (status === 'Qualified' && 'success')}
           sx={{ textTransform: 'capitalize' }}
         >
           {status}

@@ -130,6 +130,15 @@ export default function Router() {
           ],
         },
         {
+          path: 'reference',
+          children: [
+            { element: <Navigate to="/reference/list" replace />, index: true },
+            { path: 'list', element: <ReferenceList /> },
+            { path: 'new', element: <ReferenceCreate /> },
+            { path: ':name/edit', element: <ReferenceCreate /> },
+          ],
+        },
+        {
           path: 'user',
           children: [
             { element: <Navigate to="/dashboard/user/profile" replace />, index: true },
@@ -233,6 +242,10 @@ const GeneralBanking = Loadable(lazy(() => import('../pages/dashboard/GeneralBan
 // MEETING
 const MeetingOverview = Loadable(lazy(() => import('../pages/dashboard/Meeting')));
 const MeetingCreate = Loadable(lazy(() => import('../pages/dashboard/MeetingCreate')));
+
+// REFERENCES
+const ReferenceList = Loadable(lazy(() => import('../pages/dashboard/References')));
+const ReferenceCreate = Loadable(lazy(() => import('../pages/dashboard/ReferenceCreate')));
 
 // ECOMMERCE
 const EcommerceShop = Loadable(lazy(() => import('../pages/dashboard/EcommerceShop')));

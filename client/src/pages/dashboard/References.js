@@ -26,7 +26,7 @@ import useTabs from '../../hooks/useTabs';
 import useSettings from '../../hooks/useSettings';
 import useTable, { getComparator, emptyRows } from '../../hooks/useTable';
 // _mock_
-import { _meetingList } from '../../_mock';
+import { _referenceList } from '../../_mock';
 // components
 import Page from '../../components/Page';
 import Iconify from '../../components/Iconify';
@@ -34,13 +34,11 @@ import Scrollbar from '../../components/Scrollbar';
 import HeaderBreadcrumbs from '../../components/HeaderBreadcrumbs';
 import { TableEmptyRows, TableHeadCustom, TableNoData, TableSelectedActions } from '../../components/table';
 // sections
-// import { UserTableToolbar, UserTableRow } from '../../sections/@dashboard/user/list';
-import { MeetingTableToolbar, MeetingTableRow } from '../../sections/@dashboard/meeting/list';
+import { ReferenceTableToolbar, ReferenceTableRow } from '../../sections/@dashboard/references/list';
 
 // ----------------------------------------------------------------------
 
-// const STATUS_OPTIONS = ['all', 'active', 'banned'];
-const STATUS_OPTIONS = ['all', 'Successful', 'Unsuccessful', 'Agent Cancellation', 'Customer Cancellation'];
+const STATUS_OPTIONS = ['all', 'Qualified', 'Unqualified'];
 
 const ROLE_OPTIONS = [
   'all',
@@ -57,16 +55,18 @@ const ROLE_OPTIONS = [
 
 const TABLE_HEAD = [
   { id: 'name', label: 'Name', align: 'left' },
+  { id: 'referencedBy', label: 'Referenced By', align: 'left' },
   { id: 'phoneNumber', label: 'Phone Number', align: 'left' },
-  { id: 'time', label: 'Time', align: 'left' },
   { id: 'address', label: 'Address', align: 'left' },
+  { id: 'city', label: 'City', align: 'left' },
+  { id: 'role', label: 'Profession', align: 'left' },
   { id: 'status', label: 'Status', align: 'left' },
   { id: '' },
 ];
 
 // ----------------------------------------------------------------------
 
-export default function MeetingOverview() {
+export default function References() {
   const {
     dense,
     page,
@@ -90,7 +90,7 @@ export default function MeetingOverview() {
 
   const navigate = useNavigate();
 
-  const [tableData, setTableData] = useState(_meetingList);
+  const [tableData, setTableData] = useState(_referenceList);
 
   const [filterName, setFilterName] = useState('');
 
@@ -120,7 +120,7 @@ export default function MeetingOverview() {
   };
 
   const handleEditRow = (id) => {
-    navigate(PATH_DASHBOARD.meeting.edit(paramCase(id)));
+    navigate(PATH_DASHBOARD.reference.edit(paramCase(id)));
   };
 
   const dataFiltered = applySortFilter({
@@ -139,19 +139,19 @@ export default function MeetingOverview() {
     (!dataFiltered.length && !!filterStatus);
 
   return (
-    <Page title="Meetings Overview">
+    <Page title="References">
       <Container maxWidth={themeStretch ? false : 'lg'}>
         <HeaderBreadcrumbs
-          heading="Meetings Overview"
-          links={[{ name: 'Dashboard', href: PATH_DASHBOARD.general.dashboard }, { name: 'Meetings' }]}
+          heading="References"
+          links={[{ name: 'Dashboard', href: PATH_DASHBOARD.general.dashboard }, { name: 'References' }]}
           action={
             <Button
               variant="contained"
               component={RouterLink}
-              to={PATH_DASHBOARD.general.newMeeting}
+              to={PATH_DASHBOARD.references.new}
               startIcon={<Iconify icon={'eva:plus-fill'} />}
             >
-              New Meeting
+              New Reference
             </Button>
           }
         />
@@ -172,7 +172,7 @@ export default function MeetingOverview() {
 
           <Divider />
 
-          <MeetingTableToolbar
+          <ReferenceTableToolbar
             filterName={filterName}
             filterRole={filterRole}
             onFilterName={handleFilterName}
@@ -221,7 +221,7 @@ export default function MeetingOverview() {
 
                 <TableBody>
                   {dataFiltered.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => (
-                    <MeetingTableRow
+                    <ReferenceTableRow
                       key={row.id}
                       row={row}
                       selected={selected.includes(row.id)}
