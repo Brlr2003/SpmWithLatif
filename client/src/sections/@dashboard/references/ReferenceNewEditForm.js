@@ -40,7 +40,7 @@ export default function ReferenceNewEditForm({ isEdit, currentReference }) {
 
   const NewReferenceSchema = Yup.object().shape({
     name: Yup.string().required('Name is required'),
-    referencedBy: Yup.string().required('Reference is required'),
+    references: Yup.string().required('Reference is required'),
     phoneNumber: Yup.string().required('Phone number is required'),
     address: Yup.string().required('Address is required'),
     city: Yup.string().required('City is required'),
@@ -51,7 +51,7 @@ export default function ReferenceNewEditForm({ isEdit, currentReference }) {
   const defaultValues = useMemo(
     () => ({
       name: currentReference?.name || '',
-      referencedBy: currentReference?.referencedBy || '',
+      references: currentReference?.references || '',
       phoneNumber: currentReference?.phoneNumber || '',
       address: currentReference?.address || '',
       city: currentReference?.city || '',

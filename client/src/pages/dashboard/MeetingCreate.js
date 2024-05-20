@@ -1,7 +1,9 @@
 import { paramCase, capitalCase } from 'change-case';
-import { useParams, useLocation } from 'react-router-dom';
+import { useParams, useLocation, Link as RouterLink } from 'react-router-dom';
 // @mui
-import { Container } from '@mui/material';
+import { Container, Button } from '@mui/material';
+// icons
+import Iconify from '../../components/Iconify';
 // routes
 import { PATH_DASHBOARD } from '../../routes/paths';
 // hooks
@@ -34,10 +36,20 @@ export default function MeetingCreate() {
         <HeaderBreadcrumbs
           heading={!isEdit ? 'Create a new meeting' : 'Edit meeting'}
           links={[
-            { name: 'Meetings', href: PATH_DASHBOARD.eCommerce },
+            { name: 'Meetings', href: PATH_DASHBOARD.meeting.list },
             { name: !isEdit ? 'New meeting' : capitalCase(name) },
             // { name: 'User', href: PATH_DASHBOARD.user.list },
           ]}
+          action={
+            <Button
+              variant="outlined"
+              component={RouterLink}
+              to={PATH_DASHBOARD.references.newReference(paramCase(currentMeeting.name))}
+              startIcon={<Iconify icon={'eva:plus-fill'} />}
+            >
+              Add Reference
+            </Button>
+          }
         />
 
         <MeetingNewEditForm isEdit={isEdit} currentMeeting={currentMeeting} />

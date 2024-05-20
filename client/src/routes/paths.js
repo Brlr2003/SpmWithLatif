@@ -39,8 +39,6 @@ export const PATH_DASHBOARD = {
     ecommerce: '/ecommerce',
     analytics: '/analytics',
     banking: '/banking',
-    meeting: '/meeting',
-    newMeeting: '/meeting/new',
   },
   calls: {
     root: '/calls',
@@ -79,6 +77,8 @@ export const PATH_DASHBOARD = {
   references: {
     new: '/reference/new',
     list: '/reference/list',
+    edit: (name) => `/reference/${name}/edit`,
+    newReference: (name) => `/reference/${name}/new`,
   },
   eCommerce: {
     root: '/e-commerce',

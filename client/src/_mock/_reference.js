@@ -120,7 +120,7 @@ export const _referenceInvoices = [...Array(10)].map((_, index) => ({
 export const _referenceList = [...Array(5)].map((_, index) => ({
   id: _mock.id(index),
   name: _mock.name.fullName(index),
-  referencedBy: _mock.name.fullName(index + 4),
+  references: Math.floor(Math.random() * 10),
   phoneNumber: _mock.phoneNumber(index),
   address: '908 Jack Locks',
   city: 'Rancho Cordova',

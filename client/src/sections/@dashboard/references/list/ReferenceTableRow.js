@@ -21,7 +21,7 @@ ReferenceTableRow.propTypes = {
 export default function ReferenceTableRow({ row, selected, onEditRow, onSelectRow, onDeleteRow }) {
   const theme = useTheme();
 
-  const { name, referencedBy, phoneNumber, address, city, role, status } = row;
+  const { name, references, phoneNumber, address, city, role, status } = row;
   // const { name, avatarUrl, company, role, isVerified, status } = row;
 
   const [openMenu, setOpenMenuActions] = useState(null);
@@ -45,11 +45,8 @@ export default function ReferenceTableRow({ row, selected, onEditRow, onSelectRo
           {name}
         </Typography>
       </TableCell>
-      <TableCell align="left">
-        <Typography variant="subtitle2" noWrap>
-          {referencedBy}
-        </Typography>
-      </TableCell>
+
+      <TableCell align="center">{references}</TableCell>
 
       <TableCell align="left">{phoneNumber}</TableCell>
 

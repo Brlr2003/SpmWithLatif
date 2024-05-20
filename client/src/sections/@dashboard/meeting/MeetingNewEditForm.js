@@ -8,7 +8,9 @@ import { useForm, Controller } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 // @mui
 import { LoadingButton } from '@mui/lab';
-import { Box, Card, Grid, Stack, Switch, Typography, FormControlLabel } from '@mui/material';
+import { Box, Card, Grid, Stack, Switch, Typography, FormControlLabel, Button } from '@mui/material';
+// icons
+import Iconify from '../../../components/Iconify';
 // utils
 import { fData } from '../../../utils/formatNumber';
 // routes
@@ -119,7 +121,6 @@ export default function MeetingNewEditForm({ isEdit, currentMeeting }) {
 
   return (
     <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
-      {console.log(currentMeeting)}
       <Grid container spacing={3}>
         <Grid item xs={12} md={4}>
           <Card sx={{ py: 10, px: 3 }}>

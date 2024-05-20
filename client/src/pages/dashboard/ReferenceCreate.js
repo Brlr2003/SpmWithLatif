@@ -8,7 +8,7 @@ import { PATH_DASHBOARD } from '../../routes/paths';
 import useSettings from '../../hooks/useSettings';
 // _mock_
 // import { _userList } from '../../_mock';
-import { _referenceList } from '../../_mock';
+import { _meetingList } from '../../_mock';
 // components
 import Page from '../../components/Page';
 import HeaderBreadcrumbs from '../../components/HeaderBreadcrumbs';
@@ -26,21 +26,22 @@ export default function ReferenceCreate() {
 
   const isEdit = pathname.includes('edit');
 
-  const currentReference = _referenceList.find((user) => paramCase(user.name) === name);
+  const currentReference = _meetingList.find((user) => paramCase(user.name) === name);
 
   return (
-    <Page title="Create a new Reference">
+    <Page title={`Create a new Reference `}>
+      {console.log(currentReference)}
       <Container maxWidth={themeStretch ? false : 'lg'}>
         <HeaderBreadcrumbs
-          heading={!isEdit ? 'Create a new reference' : 'Edit reference'}
+          heading={name ? `Create a new reference by ${capitalCase(name)}` : 'Create a new reference'}
           links={[
             { name: 'References', href: PATH_DASHBOARD.eCommerce },
-            { name: !isEdit ? 'New Reference' : capitalCase(name) },
+            { name: 'New Reference' },
             // { name: 'User', href: PATH_DASHBOARD.user.list },
           ]}
         />
 
-        <ReferenceNewEditForm isEdit={isEdit} currentReference={currentReference} />
+        <ReferenceNewEditForm currentReference={name} />
       </Container>
     </Page>
   );

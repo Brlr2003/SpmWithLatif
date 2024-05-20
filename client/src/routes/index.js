@@ -136,6 +136,7 @@ export default function Router() {
             { path: 'list', element: <ReferenceList /> },
             { path: 'new', element: <ReferenceCreate /> },
             { path: ':name/edit', element: <ReferenceCreate /> },
+            { path: ':name/new', element: <ReferenceCreate /> },
           ],
         },
         {

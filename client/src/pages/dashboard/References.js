@@ -55,7 +55,7 @@ const ROLE_OPTIONS = [
 
 const TABLE_HEAD = [
   { id: 'name', label: 'Name', align: 'left' },
-  { id: 'referencedBy', label: 'Referenced By', align: 'left' },
+  { id: 'references', label: 'References', align: 'left' },
   { id: 'phoneNumber', label: 'Phone Number', align: 'left' },
   { id: 'address', label: 'Address', align: 'left' },
   { id: 'city', label: 'City', align: 'left' },
@@ -120,7 +120,7 @@ export default function References() {
   };
 
   const handleEditRow = (id) => {
-    navigate(PATH_DASHBOARD.reference.edit(paramCase(id)));
+    navigate(PATH_DASHBOARD.references.edit(paramCase(id)));
   };
 
   const dataFiltered = applySortFilter({

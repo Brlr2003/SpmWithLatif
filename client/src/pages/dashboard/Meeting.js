@@ -148,7 +148,7 @@ export default function MeetingOverview() {
             <Button
               variant="contained"
               component={RouterLink}
-              to={PATH_DASHBOARD.general.newMeeting}
+              to={PATH_DASHBOARD.meeting.new}
               startIcon={<Iconify icon={'eva:plus-fill'} />}
             >
               New Meeting
