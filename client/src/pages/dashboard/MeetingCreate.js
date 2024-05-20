@@ -33,24 +33,35 @@ export default function MeetingCreate() {
   return (
     <Page title="Create a new meeting">
       <Container maxWidth={themeStretch ? false : 'lg'}>
-        <HeaderBreadcrumbs
-          heading={!isEdit ? 'Create a new meeting' : 'Edit meeting'}
-          links={[
-            { name: 'Meetings', href: PATH_DASHBOARD.meeting.list },
-            { name: !isEdit ? 'New meeting' : capitalCase(name) },
-            // { name: 'User', href: PATH_DASHBOARD.user.list },
-          ]}
-          action={
-            <Button
-              variant="outlined"
-              component={RouterLink}
-              to={PATH_DASHBOARD.references.newReference(paramCase(currentMeeting.name))}
-              startIcon={<Iconify icon={'eva:plus-fill'} />}
-            >
-              Add Reference
-            </Button>
-          }
-        />
+        {isEdit ? (
+          <HeaderBreadcrumbs
+            heading={!isEdit ? 'Create a new meeting' : 'Edit meeting'}
+            links={[
+              { name: 'Meetings', href: PATH_DASHBOARD.meeting.list },
+              { name: !isEdit ? 'New meeting' : capitalCase(name) },
+              // { name: 'User', href: PATH_DASHBOARD.user.list },
+            ]}
+            action={
+              <Button
+                variant="outlined"
+                component={RouterLink}
+                to={isEdit ? PATH_DASHBOARD.references.newReference(paramCase(currentMeeting.name)) : ''}
+                startIcon={<Iconify icon={'eva:plus-fill'} />}
+              >
+                Add Reference
+              </Button>
+            }
+          />
+        ) : (
+          <HeaderBreadcrumbs
+            heading={!isEdit ? 'Create a new meeting' : 'Edit meeting'}
+            links={[
+              { name: 'Meetings', href: PATH_DASHBOARD.meeting.list },
+              { name: !isEdit ? 'New meeting' : capitalCase(name) },
+              // { name: 'User', href: PATH_DASHBOARD.user.list },
+            ]}
+          />
+        )}
 
         <MeetingNewEditForm isEdit={isEdit} currentMeeting={currentMeeting} />
       </Container>

@@ -33,15 +33,14 @@ export default function ReferenceCreate() {
       {console.log(currentReference)}
       <Container maxWidth={themeStretch ? false : 'lg'}>
         <HeaderBreadcrumbs
-          heading={name ? `Create a new reference by ${capitalCase(name)}` : 'Create a new reference'}
+          heading={'New Reference'}
           links={[
-            { name: 'References', href: PATH_DASHBOARD.eCommerce },
-            { name: 'New Reference' },
+            { name: !name ? 'Dashboard' : capitalCase(name), href: PATH_DASHBOARD.meeting.edit(name) },
+            { name: !name ? 'Create a Reference' : `New Reference by ${capitalCase(name)}` },
             // { name: 'User', href: PATH_DASHBOARD.user.list },
           ]}
         />
-
-        <ReferenceNewEditForm currentReference={name} />
+        <ReferenceNewEditForm referral={name ? capitalCase(name) : ''} />
       </Container>
     </Page>
   );
