@@ -114,7 +114,7 @@ export function getEvents() {
             'Atque eaque ducimus minima distinctio velit. Laborum et veniam officiis. Delectus ex saepe hic id laboriosam officia. Odit nostrum qui illum saepe debitis ullam. Laudantium beatae modi fugit ut. Dolores consequatur beatae nihil voluptates rem maiores.',
           start: '2024-05-03T07:30:40.420Z',
           end: '2024-05-03T09:00:40.420Z',
-          title: 'Brinaldo Gaayyyyy',
+          title: 'SPM Meeting',
         },
       ];
       // console.log(JSON.stringify(response.data.events));
