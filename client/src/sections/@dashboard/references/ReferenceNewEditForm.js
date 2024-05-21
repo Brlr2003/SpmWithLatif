@@ -29,7 +29,7 @@ import {
 // ----------------------------------------------------------------------
 
 ReferenceNewEditForm.propTypes = {
-  referral: PropTypes.string,
+  currentReference: PropTypes.string,
 };
 
 export default function ReferenceNewEditForm({ referral }) {
@@ -41,7 +41,7 @@ export default function ReferenceNewEditForm({ referral }) {
 
   const NewReferenceSchema = Yup.object().shape({
     name: Yup.string().required('Name is required'),
-    references: Yup.string().required('Reference is required'),
+    referencedBy: Yup.string().required('Reference is required'),
     phoneNumber: Yup.string().required('Phone number is required'),
     address: Yup.string().required('Address is required'),
     city: Yup.string().required('City is required'),
@@ -53,7 +53,7 @@ export default function ReferenceNewEditForm({ referral }) {
   const defaultValues = useMemo(
     () => ({
       name: '',
-      references: '',
+      referencedBy: '',
       phoneNumber: '',
       address: '',
       city: '',

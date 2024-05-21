@@ -46,6 +46,7 @@ const navConfig = [
         // { title: 'edit', path: PATH_DASHBOARD.calls.demoEdit },
         // ],
       },
+      { title: 'References', path: PATH_DASHBOARD.references.list, icon: ICONS.user },
     ],
   },
 

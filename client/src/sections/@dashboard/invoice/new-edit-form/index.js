@@ -127,16 +127,16 @@ export default function InvoiceNewEditForm({ isEdit, currentInvoice, currentUser
       </Card>
 
       <Stack justifyContent="flex-end" direction="row" spacing={2} sx={{ mt: 3 }}>
-        {/* <LoadingButton
-                size="large"
-                variant="contained"
-                loading={loadingSend && isSubmitting}
-                onClick={handleSubmit(handleCreateAndSend)}
-              >
-                {isEdit ? 'Update' : 'Create'} & Send
-              </LoadingButton> */}
+        <LoadingButton
+          size="large"
+          variant="contained"
+          loading={loadingSend && isSubmitting}
+          onClick={handleSubmit(handleCreateAndSend)}
+        >
+          {isEdit ? 'Update' : 'Create'} & Send
+        </LoadingButton>
         {/* <PDFDownloadLink
-          document={<InvoicePDF invoice={values} />}
+          document={<InvoicePDF invoice={currentInvoice} />}
           fileName={currentUser.id}
           style={{ textDecoration: 'none' }}
         >

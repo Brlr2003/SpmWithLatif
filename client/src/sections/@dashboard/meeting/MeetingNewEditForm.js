@@ -18,7 +18,14 @@ import { PATH_DASHBOARD } from '../../../routes/paths';
 import { countries, meetingStatus, _invoices } from '../../../_mock';
 // components
 import Label from '../../../components/Label';
-import { FormProvider, RHFSelect, RHFSwitch, RHFTextField, RHFUploadAvatar } from '../../../components/hook-form';
+import {
+  FormProvider,
+  RHFSelect,
+  RHFSwitch,
+  RHFTextField,
+  RHFTextFieldMulti,
+  RHFUploadAvatar,
+} from '../../../components/hook-form';
 // sections
 import Invoice from '../invoice/details';
 import InvoiceNewEditForm from '../invoice/new-edit-form';
@@ -65,6 +72,7 @@ export default function MeetingNewEditForm({ isEdit, currentMeeting }) {
       status: currentMeeting?.status || '',
       company: currentMeeting?.company || '',
       role: currentMeeting?.role || '',
+      comment: currentMeeting?.comment || '',
     }),
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [currentMeeting]
@@ -228,6 +236,7 @@ export default function MeetingNewEditForm({ isEdit, currentMeeting }) {
                 ))}
               </RHFSelect>
             </Box>
+            {values.status !== 'Successful' && <RHFTextFieldMulti sx={{ mt: 3 }} name="comment" label="Comment" />}
 
             <Stack alignItems="flex-end" sx={{ mt: 3 }}>
               <LoadingButton type="submit" variant="contained" loading={isSubmitting}>
