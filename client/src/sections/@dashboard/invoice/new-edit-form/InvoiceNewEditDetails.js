@@ -10,14 +10,6 @@ import { RHFSelect, RHFTextField } from '../../../../components/hook-form';
 
 // ----------------------------------------------------------------------
 
-const SERVICE_OPTIONS = [
-  'full stack development',
-  'backend development',
-  'ui design',
-  'ui/ux design',
-  'front end development',
-];
-
 export default function InvoiceNewEditDetails() {
   const { control, setValue, watch } = useFormContext();
 
@@ -67,44 +59,6 @@ export default function InvoiceNewEditDetails() {
                 InputLabelProps={{ shrink: true }}
               />
 
-              <RHFSelect
-                name={`items[${index}].service`}
-                label="Service type"
-                size="small"
-                InputLabelProps={{ shrink: true }}
-                SelectProps={{ native: false, sx: { textTransform: 'capitalize' } }}
-                sx={{ maxWidth: { md: 160 } }}
-              >
-                <MenuItem
-                  value=""
-                  sx={{
-                    mx: 1,
-                    borderRadius: 0.75,
-                    typography: 'body2',
-                    fontStyle: 'italic',
-                    color: 'text.secondary',
-                  }}
-                >
-                  None
-                </MenuItem>
-                <Divider />
-                {SERVICE_OPTIONS.map((option) => (
-                  <MenuItem
-                    key={option}
-                    value={option}
-                    sx={{
-                      mx: 1,
-                      my: 0.5,
-                      borderRadius: 0.75,
-                      typography: 'body2',
-                      textTransform: 'capitalize',
-                    }}
-                  >
-                    {option}
-                  </MenuItem>
-                ))}
-              </RHFSelect>
-
               <RHFTextField
                 size="small"
                 type="number"
@@ -139,20 +93,20 @@ export default function InvoiceNewEditDetails() {
               />
             </Stack>
 
-            <Button
+            {/* <Button
               size="small"
               color="error"
               startIcon={<Iconify icon="eva:trash-2-outline" />}
               onClick={() => handleRemove(index)}
             >
               Remove
-            </Button>
+            </Button> */}
           </Stack>
         ))}
       </Stack>
 
-      <Divider sx={{ my: 3, borderStyle: 'dashed' }} />
-
+      {/* <Divider sx={{ my: 3, borderStyle: 'dashed' }} /> */}
+      {/* 
       <Stack
         spacing={2}
         direction={{ xs: 'column-reverse', md: 'row' }}
@@ -179,7 +133,7 @@ export default function InvoiceNewEditDetails() {
             sx={{ maxWidth: { md: 200 } }}
           />
         </Stack>
-      </Stack>
+      </Stack> */}
     </Box>
   );
 }

@@ -117,7 +117,8 @@ export default function PhoneAgentCalendar() {
       const calendarApi = calendarEl.getApi();
       calendarApi.unselect();
     }
-    dispatch(selectRange(arg.start, arg.end));
+    const end = new Date(arg.start.getTime() + 90 * 60000);
+    dispatch(selectRange(arg.start, end));
   };
 
   const handleSelectEvent = (arg) => {

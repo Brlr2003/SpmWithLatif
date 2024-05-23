@@ -139,7 +139,6 @@ export default function MeetingNewEditForm({ isEdit, currentMeeting }) {
 
   return (
     <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
-      {console.log(invoice)}
       <Grid container spacing={3} sx={{ mb: 10 }}>
         <Grid item xs={12} md={4}>
           <Card sx={{ py: 10, px: 3 }}>
@@ -237,12 +236,13 @@ export default function MeetingNewEditForm({ isEdit, currentMeeting }) {
               </RHFSelect>
             </Box>
             {values.status !== 'Successful' && <RHFTextFieldMulti sx={{ mt: 3 }} name="comment" label="Comment" />}
-
-            <Stack alignItems="flex-end" sx={{ mt: 3 }}>
-              <LoadingButton type="submit" variant="contained" loading={isSubmitting}>
-                {!isEdit ? 'Create Meeting' : 'Save Changes'}
-              </LoadingButton>
-            </Stack>
+            {values.status !== 'Successful' && (
+              <Stack alignItems="flex-end" sx={{ mt: 3 }}>
+                <LoadingButton type="submit" variant="contained" loading={isSubmitting}>
+                  {!isEdit ? 'Create Meeting' : 'Save'}
+                </LoadingButton>
+              </Stack>
+            )}
           </Card>
         </Grid>
       </Grid>

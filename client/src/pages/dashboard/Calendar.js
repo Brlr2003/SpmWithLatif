@@ -22,7 +22,7 @@ import Iconify from '../../components/Iconify';
 import { DialogAnimate } from '../../components/animate';
 import HeaderBreadcrumbs from '../../components/HeaderBreadcrumbs';
 // sections
-import { CalendarForm, CalendarStyle, CalendarToolbar } from '../../sections/@dashboard/calendar';
+import { CalendarFormSalesAgent, CalendarStyle, CalendarToolbar } from '../../sections/@dashboard/calendar';
 
 // ----------------------------------------------------------------------
 
@@ -45,7 +45,7 @@ export default function Calendar() {
 
   const [date, setDate] = useState(new Date());
 
-  const [view, setView] = useState(isDesktop ? 'dayGridMonth' : 'listWeek');
+  const [view, setView] = useState(isDesktop ? 'timeGridWeek' : 'listWeek');
 
   const selectedEvent = useSelector(selectedEventSelector);
 
@@ -59,7 +59,7 @@ export default function Calendar() {
     const calendarEl = calendarRef.current;
     if (calendarEl) {
       const calendarApi = calendarEl.getApi();
-      const newView = isDesktop ? 'dayGridMonth' : 'listWeek';
+      const newView = isDesktop ? 'timeGridWeek' : 'listWeek';
       calendarApi.changeView(newView);
       setView(newView);
     }
@@ -107,12 +107,14 @@ export default function Calendar() {
       const calendarApi = calendarEl.getApi();
       calendarApi.unselect();
     }
-    dispatch(selectRange(arg.start, arg.end));
+    const end = new Date(arg.start.getTime() + 90 * 60000);
+
+    dispatch(selectRange(arg.start, end));
   };
 
-  const handleSelectEvent = (arg) => {
-    dispatch(selectEvent(arg.event.id));
-  };
+  // const handleSelectEvent = (arg) => {
+  //   dispatch(selectEvent(arg.event.id));
+  // };
 
   const handleResizeEvent = async ({ event }) => {
     try {
@@ -179,7 +181,6 @@ export default function Calendar() {
             />
             <FullCalendar
               weekends
-              editable
               droppable
               selectable
               events={events}
@@ -194,7 +195,7 @@ export default function Calendar() {
               eventResizableFromStart
               select={handleSelectRange}
               eventDrop={handleDropEvent}
-              eventClick={handleSelectEvent}
+              // eventClick={handleSelectEvent}
               eventResize={handleResizeEvent}
               height={isDesktop ? 720 : 'auto'}
               plugins={[listPlugin, dayGridPlugin, timelinePlugin, timeGridPlugin, interactionPlugin]}
@@ -203,9 +204,8 @@ export default function Calendar() {
         </Card>
 
         <DialogAnimate open={isOpenModal} onClose={handleCloseModal}>
-          <DialogTitle>{selectedEvent ? 'Edit Event' : 'Add Event'}</DialogTitle>
-
-          <CalendarForm event={selectedEvent || {}} range={selectedRange} onCancel={handleCloseModal} />
+          <DialogTitle>{selectedEvent ? 'Edit Event' : 'Add Availablility'}</DialogTitle>
+          <CalendarFormSalesAgent event={selectedEvent || {}} range={selectedRange} onCancel={handleCloseModal} />
         </DialogAnimate>
       </Container>
     </Page>

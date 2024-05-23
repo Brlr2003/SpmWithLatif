@@ -45,7 +45,11 @@ export default function InvoiceNewEditAddress({ currentUser }) {
           </Typography>
         </Stack>
 
-        <AddressInfo name={'Pure Tech'} address={'Epoka University, Tirana, Albania, 1001'} phone={'+355 69 293 75'} />
+        <AddressInfo
+          name={'Pure Tech'}
+          address={'Epoka University, Tirana, Albania, 1001'}
+          phone={'+355 69 293 75 36'}
+        />
       </Stack>
 
       <Stack sx={{ width: 1 }}>

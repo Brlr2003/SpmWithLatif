@@ -16,11 +16,7 @@ export default function InvoiceNewEditStatusDate() {
   const { control } = useFormContext();
 
   return (
-    <Stack
-      spacing={2}
-      direction={{ xs: 'column', sm: 'row' }}
-      sx={{ p: 3, bgcolor: 'background.neutral' }}
-    >
+    <Stack spacing={2} direction={{ xs: 'column', sm: 'row' }} sx={{ p: 3, bgcolor: 'background.neutral' }}>
       <RHFSelect
         fullWidth
         name="status"
@@ -50,14 +46,13 @@ export default function InvoiceNewEditStatusDate() {
         control={control}
         render={({ field, fieldState: { error } }) => (
           <DatePicker
+            disabled
             label="Date create"
             value={field.value}
             onChange={(newValue) => {
               field.onChange(newValue);
             }}
-            renderInput={(params) => (
-              <TextField {...params} fullWidth error={!!error} helperText={error?.message} />
-            )}
+            renderInput={(params) => <TextField {...params} fullWidth error={!!error} helperText={error?.message} />}
           />
         )}
       />
@@ -67,14 +62,13 @@ export default function InvoiceNewEditStatusDate() {
         control={control}
         render={({ field, fieldState: { error } }) => (
           <DatePicker
+            disabled
             label="Due date"
             value={field.value}
             onChange={(newValue) => {
               field.onChange(newValue);
             }}
-            renderInput={(params) => (
-              <TextField {...params} fullWidth error={!!error} helperText={error?.message} />
-            )}
+            renderInput={(params) => <TextField {...params} fullWidth error={!!error} helperText={error?.message} />}
           />
         )}
       />

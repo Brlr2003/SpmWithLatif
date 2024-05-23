@@ -43,10 +43,14 @@ export default function InvoiceNewEditForm({ isEdit, currentInvoice, currentUser
     invoiceTo: Yup.mixed().nullable().required('Invoice to is required'),
   });
 
+  const currentDate = new Date();
+  const dueDate = new Date(currentDate);
+  dueDate.setFullYear(dueDate.getFullYear() + 5);
+
   const defaultValues = useMemo(
     () => ({
-      createDate: currentInvoice?.createDate || null,
-      dueDate: currentInvoice?.dueDate || null,
+      createDate: currentDate.toDateString(),
+      dueDate: dueDate.toDateString(),
       taxes: currentInvoice?.taxes || '',
       status: currentInvoice?.status || 'draft',
       discount: currentInvoice?.discount || '',
@@ -133,7 +137,7 @@ export default function InvoiceNewEditForm({ isEdit, currentInvoice, currentUser
           loading={loadingSend && isSubmitting}
           onClick={handleSubmit(handleCreateAndSend)}
         >
-          {isEdit ? 'Update' : 'Create'} & Send
+          {isEdit ? 'Update' : 'Print'} & Send
         </LoadingButton>
         {/* <PDFDownloadLink
           document={<InvoicePDF invoice={currentInvoice} />}

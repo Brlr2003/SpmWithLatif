@@ -40,7 +40,7 @@ export default function ReferenceCreate() {
           ]}
         />
         <ReferenceNewEditForm referral={name ? capitalCase(name) : ''} />
-        <ReferenceNewEditForm isEdit={isEdit} currentReference={currentReference} />
+        {/* <ReferenceNewEditForm isEdit={isEdit} currentReference={currentReference} /> */}
       </Container>
     </Page>
   );
