@@ -122,6 +122,7 @@ export default function MeetingOverview() {
   };
 
   const handleEditRow = (selected) => {
+    handleDeleteRow(selected.id);
     navigate(PATH_DASHBOARD.meeting.edit(paramCase(selected.name)));
   };
 
