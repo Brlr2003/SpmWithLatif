@@ -116,7 +116,7 @@ export default function InvoiceNewEditForm({ isEdit, currentInvoice, currentUser
       reset();
       setLoadingSend(false);
       navigate(PATH_DASHBOARD.invoice.list);
-      console.log(JSON.stringify(newInvoice, null, 2));
+      // console.log(JSON.stringify(newInvoice, null, 2));
     } catch (error) {
       console.error(error);
     }

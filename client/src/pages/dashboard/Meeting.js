@@ -1,5 +1,5 @@
 import { paramCase } from 'change-case';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link as RouterLink, useNavigate } from 'react-router-dom';
 // @mui
 import {
@@ -111,16 +111,18 @@ export default function MeetingOverview() {
     const deleteRow = tableData.filter((row) => row.id !== id);
     setSelected([]);
     setTableData(deleteRow);
+    localStorage.setItem('myData', JSON.stringify(deleteRow));
   };
 
   const handleDeleteRows = (selected) => {
     const deleteRows = tableData.filter((row) => !selected.includes(row.id));
     setSelected([]);
     setTableData(deleteRows);
+    localStorage.setItem('myData', JSON.stringify(deleteRows));
   };
 
-  const handleEditRow = (id) => {
-    navigate(PATH_DASHBOARD.meeting.edit(paramCase(id)));
+  const handleEditRow = (selected) => {
+    navigate(PATH_DASHBOARD.meeting.edit(paramCase(selected.name)));
   };
 
   const dataFiltered = applySortFilter({
@@ -137,6 +139,15 @@ export default function MeetingOverview() {
     (!dataFiltered.length && !!filterName) ||
     (!dataFiltered.length && !!filterRole) ||
     (!dataFiltered.length && !!filterStatus);
+
+  useEffect(() => {
+    const retrievedString = localStorage.getItem('myData');
+    if (retrievedString) {
+      setTableData(JSON.parse(retrievedString));
+    } else {
+      localStorage.setItem('myData', JSON.stringify(tableData));
+    }
+  }, []);
 
   return (
     <Page title="Meetings Overview">
@@ -227,7 +238,7 @@ export default function MeetingOverview() {
                       selected={selected.includes(row.id)}
                       onSelectRow={() => onSelectRow(row.id)}
                       onDeleteRow={() => handleDeleteRow(row.id)}
-                      onEditRow={() => handleEditRow(row.name)}
+                      onEditRow={() => handleEditRow(row)}
                     />
                   ))}
 

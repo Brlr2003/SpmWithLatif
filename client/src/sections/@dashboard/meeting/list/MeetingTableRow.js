@@ -15,10 +15,9 @@ MeetingTableRow.propTypes = {
   selected: PropTypes.bool,
   onEditRow: PropTypes.func,
   onSelectRow: PropTypes.func,
-  onDeleteRow: PropTypes.func,
 };
 
-export default function MeetingTableRow({ row, selected, onEditRow, onSelectRow, onDeleteRow }) {
+export default function MeetingTableRow({ row, selected, onEditRow, onSelectRow }) {
   const theme = useTheme();
 
   const { name, avatarUrl, phoneNumber, time, address, status } = row;
@@ -95,22 +94,12 @@ export default function MeetingTableRow({ row, selected, onEditRow, onSelectRow,
             <>
               <MenuItem
                 onClick={() => {
-                  onDeleteRow();
-                  handleCloseMenu();
-                }}
-                sx={{ color: 'error.main' }}
-              >
-                <Iconify icon={'eva:trash-2-outline'} />
-                Delete
-              </MenuItem>
-              <MenuItem
-                onClick={() => {
                   onEditRow();
                   handleCloseMenu();
                 }}
               >
-                <Iconify icon={'eva:edit-fill'} />
-                Edit
+                <Iconify icon={'majesticons:open-line'} />
+                Open
               </MenuItem>
             </>
           }

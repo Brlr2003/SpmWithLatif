@@ -40,7 +40,7 @@ const Loadable = (Component) => (props) => {
 };
 
 export default function Router() {
-  const user = 2;
+  const user = 1;
 
   return useRoutes([
     {

@@ -108,7 +108,7 @@ export default function MeetingNewEditForm({ isEdit, currentMeeting }) {
     try {
       await new Promise((resolve) => setTimeout(resolve, 500));
       reset();
-      enqueueSnackbar(!isEdit ? 'Create success!' : 'Update success!');
+      enqueueSnackbar(!isEdit ? 'Create success!' : 'Sent successfully!');
       navigate(PATH_DASHBOARD.meeting.list);
     } catch (error) {
       console.error(error);
